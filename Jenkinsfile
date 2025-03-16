@@ -11,28 +11,28 @@ pipeline {
         stage('Restore') {
             steps {
                 echo 'Restoring dependencies...'
-                bat 'dotnet restore ${PROJECT_PATH}'
+                bat 'dotnet restore %PROJECT_PATH%' // Use %PROJECT_PATH% for Windows
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                bat 'dotnet build ${PROJECT_PATH} --configuration Release --no-restore'
+                bat 'dotnet build %PROJECT_PATH% --configuration Release --no-restore'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                bat 'dotnet test ${PROJECT_PATH} --configuration Release --no-build'
+                bat 'dotnet test %PROJECT_PATH% --configuration Release --no-build'
             }
         }
 
         stage('Publish') {
             steps {
                 echo 'Publishing the application...'
-                bat 'dotnet publish ${PROJECT_PATH} --configuration Release --output ${OUTPUT_DIR} --no-build'
+                bat 'dotnet publish %PROJECT_PATH% --configuration Release --output %OUTPUT_DIR% --no-build'
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 echo 'Deploying the application...'
                 // Example: Copy files to another directory (for practice)
-                bat 'xcopy ${OUTPUT_DIR} C:\\DeployedApps\\TodoApp /E /I'
+                bat 'xcopy %OUTPUT_DIR% C:\\DeployedApps\\TodoApp /E /I'
             }
         }
     }
