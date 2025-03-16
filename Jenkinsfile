@@ -3,45 +3,44 @@ pipeline {
 
     environment {
         DOTNET_VERSION = '8.0' // Replace with your .NET version (e.g., 6.0, 7.0, etc.)
-        PROJECT_PATH = 'JenkinsTest/ToDoApi/ToDoApi/ToDoApi.csproj' // Path to your .csproj file
-        OUTPUT_DIR = 'publish' // Directory to publish the application
+        PROJECT_PATH = 'JenkinsTest\\ToDoApi\\ToDoApi\\ToDoApi.csproj' // Windows-style path to your .csproj file
+        OUTPUT_DIR = 'C:\\JenkinsOutput\\TodoApp' // Windows-style output directory
     }
 
     stages {
         stage('Restore') {
             steps {
                 echo 'Restoring dependencies...'
-                sh 'dotnet restore ${PROJECT_PATH}'
+                bat 'dotnet restore ${PROJECT_PATH}'
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                sh 'dotnet build ${PROJECT_PATH} --configuration Release --no-restore'
+                bat 'dotnet build ${PROJECT_PATH} --configuration Release --no-restore'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh 'dotnet test ${PROJECT_PATH} --configuration Release --no-build'
+                bat 'dotnet test ${PROJECT_PATH} --configuration Release --no-build'
             }
         }
 
         stage('Publish') {
             steps {
                 echo 'Publishing the application...'
-                sh 'dotnet publish ${PROJECT_PATH} --configuration Release --output ${OUTPUT_DIR} --no-build'
+                bat 'dotnet publish ${PROJECT_PATH} --configuration Release --output ${OUTPUT_DIR} --no-build'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                // Example: Deploy to a remote server using SCP
-               
-                // Alternatively, deploy to a Docker container, Azure, or other platforms
+                // Example: Copy files to another directory (for practice)
+                bat 'xcopy ${OUTPUT_DIR} C:\\DeployedApps\\TodoApp /E /I'
             }
         }
     }
