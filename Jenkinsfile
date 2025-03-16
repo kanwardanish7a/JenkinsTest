@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOTNET_VERSION = '8.0' // Replace with your .NET version (e.g., 6.0, 7.0, etc.)
-        PROJECT_PATH = './ToDoApi/ToDoApi/ToDoApi.csproj' // Path to your .csproj file
+        PROJECT_PATH = 'ToDoApi/ToDoApi/ToDoApi.csproj' // Path to your .csproj file
         OUTPUT_DIR = 'publish' // Directory to publish the application
     }
 
