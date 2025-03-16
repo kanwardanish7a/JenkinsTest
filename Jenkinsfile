@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOTNET_VERSION = '8.0' // Replace with your .NET version (e.g., 6.0, 7.0, etc.)
-        PROJECT_PATH = 'JenkinsTest\\ToDoApi\\ToDoApi\\ToDoApi.csproj' // Windows-style path to your .csproj file
-        OUTPUT_DIR = 'C:\\JenkinsOutput\\TodoApp' // Windows-style output directory
+        DOTNET_VERSION = '8.0' // Use .NET 8
+        PROJECT_PATH = 'ToDoApi\\ToDoApi\\ToDoApi.csproj' // Correct relative path
+        OUTPUT_DIR = 'C:\\JenkinsOutput\\TodoApp' // Output directory
     }
 
     stages {
